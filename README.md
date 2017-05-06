@@ -36,17 +36,52 @@ You can simply use `repositories:generate` command by terminal:
 php artisan repositories:generate
 ```
 
-### Repository file provided by this package (optional)
+### Repository file provided by RepositoryGenerator (optional use)
 
 This package contains Repository.php which has similar functions to Eloquent. You can basically do something like below when you extend class from Repository.php
 ``` php
 <?php
 
-$repository = app()->make(ExampleRepository::class);
 $magic = $repository->select('id', 'name')
             ->where('name', 'The Flash')
             ->get(); // or ->first();
 ```
+
+Built-in active() scope
+``` php
+<?php
+
+$magic = $repository->active()
+            ->get();
+            
+// You can change active column name from config/repository-generator.php
+```
+
+**Available Methods** <br>
+All listed methods have same usage as Eloquent
+
+| Method        | Usage                                                     
+| ------------- | ----------------------------------------------------------
+| **select**    | $repo->select('column1,'column2')                         
+|               | $repo->select(['column1, 'column2'])                      
+| **active**    | $repo->active()->get();                                   
+|               | active() is equal to $books->where('active_column', 1);   
+| **where**     | $repo->where('color', 'red')->first();
+|               | $repo->where('level', '>',  10)->first();
+| **whereIn**   | $repo->whereIn('role', ['moderator', 'admin'])->get();
+| **orWhere**   | $repo->orWhere('column', 'value')->first();
+| **with**      | $repo->with('relation')->get();
+| **count**     | $repo->where('type', 'follower')->count();
+| **find**      | $repo->find($id);
+| **value**     | $repo->where('id', $id)->value('name');
+| **get**       | $repo->get();
+| **paginate**  | $repo->paginate(20);
+| **create**    | $repo->create(['name' => 'Ozan', 'role' => 'admin']);
+| **update**    | $repo->update(['role' => 'moderator'], $id);
+| **delete**    | $repo->where('posts', 0)->delete();
+|               | $repo->delete($id);
+| **destroy**   | $repo->destroy($id);
+
 
 ## Contributing
  
