@@ -38,7 +38,7 @@ php artisan repositories:generate
 
 ### Repository file provided by RepositoryGenerator (optional use)
 
-This package contains Repository.php which has similar functions to Eloquent. You can basically do something like below when you extend class from \OzanAkman\RepositoryGenerator\Repository
+This package contains Repository.php which has similar functions to Eloquent. You can basically do something like below when you extend class from `\OzanAkman\RepositoryGenerator\Repository`
 ``` php
 <?php
 
