@@ -65,7 +65,7 @@ All listed methods have same usage as Eloquent
 | **select**    | $repo->select('column1,'column2')                         
 |               | $repo->select(['column1, 'column2'])                      
 | **active**    | $repo->active()->get();                                   
-|               | active() is equal to $books->where('active_column', 1);   
+|               | active() is equal to $repo->where('active_column', 1);   
 | **where**     | $repo->where('color', 'red')->first();
 |               | $repo->where('level', '>',  10)->first();
 | **whereIn**   | $repo->whereIn('role', ['moderator', 'admin'])->get();
