@@ -8,7 +8,6 @@ use OzanAkman\RepositoryGenerator\Exceptions\StubException;
 
 class Generate extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -86,7 +85,7 @@ class Generate extends Command
         // Ask for overriding, If there are files in interface repository.
         // It could be already asked while checking repository files.
         // If so, we won't show this confirm question again.
-        if (count($existingInterfaceFiles) > 0 && !$this->override) {
+        if (count($existingInterfaceFiles) > 0 && ! $this->override) {
             if ($this->confirm('Do you want to overwrite the existing files? (Yes/No):')) {
                 $this->override = true;
             }
@@ -105,7 +104,7 @@ class Generate extends Command
             '__MODEL_NAMESPACE_',
             '__MODEL__',
             '__INTERFACE_NAMESPACE_',
-            '__INTERFACE__'
+            '__INTERFACE__',
         ];
 
         // Interface stub values those should be changed by command.
@@ -123,14 +122,14 @@ class Generate extends Command
             $interface = suffix($model, 'RepositoryInterface');
 
             // Current repository file name
-            $repositoryFile = $this->repositoryPath($repository . '.php');
+            $repositoryFile = $this->repositoryPath($repository.'.php');
 
             // Check main repository file's path to add use
             $useStatementForRepository = false;
             if (dirname($repositoryFile) !== dirname(config('repository-generator.main_repository_file'))
             ) {
                 $mainRepository = config('repository-generator.main_repository_class');
-                $useStatementForRepository = 'use ' . $mainRepository . ';';
+                $useStatementForRepository = 'use '.$mainRepository.';';
             }
 
             // Fillable repository values for generating real files
@@ -142,7 +141,7 @@ class Generate extends Command
                 config('repository-generator.model_namespace'),
                 $model,
                 config('repository-generator.interface_namespace'),
-                $interface
+                $interface,
             ];
 
             // Generate body of the repository file
@@ -154,22 +153,22 @@ class Generate extends Command
             if (in_array($repositoryFile, $existingRepositoryFiles)) {
                 if ($this->override) {
                     $this->writeFile($repositoryFile, $repositoryContent);
-                    $this->info('Overridden repository file: ' . $repository);
+                    $this->info('Overridden repository file: '.$repository);
                 }
             } else {
                 $this->writeFile($repositoryFile, $repositoryContent);
-                $this->info('Created repository file: ' . $repository);
+                $this->info('Created repository file: '.$repository);
             }
 
             // Current interface file name
-            $interfaceFile = $this->interfacePath($interface . '.php');
+            $interfaceFile = $this->interfacePath($interface.'.php');
 
             // Check main repository file's path to add use
             $useStatementForInterface = false;
             if (dirname($interfaceFile) !== dirname(config('repository-generator.main_interface_file'))
             ) {
                 $mainInterface = config('repository-generator.main_interface_class');
-                $useStatementForInterface = 'use ' . $mainInterface . ';';
+                $useStatementForInterface = 'use '.$mainInterface.';';
             }
 
             // Fillable interface values for generating real files
@@ -177,7 +176,7 @@ class Generate extends Command
                 $useStatementForInterface ? $useStatementForInterface : '',
                 config('repository-generator.interface_namespace'),
                 str_replace('.php', '', config('repository-generator.main_interface_file')),
-                $interface
+                $interface,
             ];
 
             // Generate body of the interface file
@@ -189,32 +188,31 @@ class Generate extends Command
             if (in_array($interfaceFile, $existingInterfaceFiles)) {
                 if ($this->override) {
                     $this->writeFile($interfaceFile, $interfaceContent);
-                    $this->info('Overridden interface file: ' . $interface);
+                    $this->info('Overridden interface file: '.$interface);
                 }
             } else {
                 $this->writeFile($interfaceFile, $interfaceContent);
-                $this->info('Created interface file: ' . $interface);
+                $this->info('Created interface file: '.$interface);
             }
         }
-
     }
 
     /**
-     * Get all model names from models directory
+     * Get all model names from models directory.
      *
      * @return array|mixed
      */
     private function getModels()
     {
         $modelDirectory = config('repository-generator.model_directory');
-        $models = glob($modelDirectory . '*');
+        $models = glob($modelDirectory.'*');
         $models = str_replace([$modelDirectory, '.php'], '', $models);
 
         return $models;
     }
 
     /**
-     * Get stub content
+     * Get stub content.
      *
      * @param $file
      * @return bool|string
@@ -222,54 +220,53 @@ class Generate extends Command
      */
     private function getStub($file)
     {
-        $stub = __DIR__ . '/../Stubs/' . $file . '.stub';
+        $stub = __DIR__.'/../Stubs/'.$file.'.stub';
 
         if (file_exists($stub)) {
             return file_get_contents($stub);
         }
 
         throw StubException::fileNotFound($file);
-
     }
 
     /**
-     * Get repository path
+     * Get repository path.
      *
      * @param null $path
      * @return string
      */
     private function repositoryPath($path = null)
     {
-        return config('repository-generator.repository_directory') . $path;
+        return config('repository-generator.repository_directory').$path;
     }
 
     /**
-     * Get interface path
+     * Get interface path.
      *
      * @param null $path
      * @return string
      */
     private function interfacePath($path = null)
     {
-        return config('repository-generator.interface_directory') . $path;
+        return config('repository-generator.interface_directory').$path;
     }
 
     /**
-     * Get parent path of repository of interface folder
+     * Get parent path of repository of interface folder.
      *
      * @param string $child
      * @return string
      */
     private function parentPath($child = 'repository')
     {
-        $childPath = $child . 'Path';
+        $childPath = $child.'Path';
         $childPath = $this->$childPath();
 
         return dirname($childPath);
     }
 
     /**
-     * Generate/override a file
+     * Generate/override a file.
      *
      * @param $file
      * @param $content
@@ -293,12 +290,12 @@ class Generate extends Command
         $repositoryParentPath = $this->parentPath('repository');
 
         // Check parent of repository directory is writable.
-        if (!file_exists($repositoryPath) && !is_writable($repositoryParentPath)) {
+        if (! file_exists($repositoryPath) && ! is_writable($repositoryParentPath)) {
             throw FileException::notWritableDirectory($repositoryParentPath);
         }
 
         // Check repository directory permissions.
-        if (file_exists($repositoryPath) && !is_writable($repositoryPath)) {
+        if (file_exists($repositoryPath) && ! is_writable($repositoryPath)) {
             throw FileException::notWritableDirectory($repositoryPath);
         }
     }
@@ -317,32 +314,33 @@ class Generate extends Command
         $interfaceParentPath = $this->parentPath('interface');
 
         // Check parent of interface directory is writable.
-        if (!file_exists($interfacePath) && !is_writable($interfaceParentPath)) {
+        if (! file_exists($interfacePath) && ! is_writable($interfaceParentPath)) {
             throw FileException::notWritableDirectory($interfaceParentPath);
         }
 
         // Check repository directory permissions.
-        if (file_exists($interfacePath) && !is_writable($interfacePath)) {
+        if (file_exists($interfacePath) && ! is_writable($interfacePath)) {
             throw FileException::notWritableDirectory($interfacePath);
         }
     }
 
-    private function createFolder($folder){
-        if(!file_exists($folder)){
+    private function createFolder($folder)
+    {
+        if (! file_exists($folder)) {
             mkdir($folder);
         }
     }
 
     /**
-     * Show message and stop script, If there are no model files to work
+     * Show message and stop script, If there are no model files to work.
      */
     private function noModelsMessage()
     {
         $this->warn('Repository generator has stopped!');
         $this->line(
             'There are no model files to use in directory: "'
-            . config('repository-generator.model_directory')
-            . '"'
+            .config('repository-generator.model_directory')
+            .'"'
         );
         exit;
     }

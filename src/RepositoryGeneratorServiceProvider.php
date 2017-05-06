@@ -65,5 +65,4 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
             ]);
         }
     }
-
 }
