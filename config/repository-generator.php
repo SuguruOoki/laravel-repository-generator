@@ -70,6 +70,6 @@ return [
     | Most projects need it but of course, you don't have to use it
     */
 
-    'active_column' => 'active'
+    'active_column' => 'active',
 
 ];
