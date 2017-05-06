@@ -38,4 +38,4 @@ php artisan repositories:generate
 
 ## Contributing
  
-Thank you for considering contributing to the Extended Route! The contribution guide can be found in the CONTRIBUTING.md
+Thank you for considering contributing to the Repository Generator! The contribution guide can be found in the CONTRIBUTING.md
