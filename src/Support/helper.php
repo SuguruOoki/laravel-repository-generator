@@ -1,8 +1,8 @@
 <?php
 
-if (!function_exists('suffix')) {
+if (! function_exists('suffix')) {
     /**
-     * Adding string to end of target's value
+     * Adding string to end of target's value.
      *
      * @param $target
      * @param $suffix
@@ -10,6 +10,6 @@ if (!function_exists('suffix')) {
      */
     function suffix($target, $suffix)
     {
-        return $target . $suffix;
+        return $target.$suffix;
     }
 }

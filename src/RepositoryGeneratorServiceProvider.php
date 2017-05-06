@@ -33,9 +33,9 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
     protected function publishConfig()
     {
         // Publish config files
-        $this->publishes( [
-            __DIR__ . '/../config/repository-generator.php' => config_path( 'repository-generator.php' ),
-        ] );
+        $this->publishes([
+            __DIR__.'/../config/repository-generator.php' => config_path('repository-generator.php'),
+        ]);
     }
 
     /**
@@ -59,5 +59,4 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
             ]);
         }
     }
-
 }

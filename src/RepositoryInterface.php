@@ -4,7 +4,6 @@ namespace OzanAkman\RepositoryGenerator;
 
 interface RepositoryInterface
 {
-
     /**
      * Bind columns to query.
      *

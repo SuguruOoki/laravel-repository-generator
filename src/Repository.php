@@ -21,7 +21,7 @@ abstract class Repository implements RepositoryInterface
     public $relations = [];
 
     /**
-     * Basic where clauses to affect query
+     * Basic where clauses to affect query.
      *
      * @var array
      */
@@ -60,7 +60,7 @@ abstract class Repository implements RepositoryInterface
      *
      * @param $model
      */
-    function __construct($model)
+    public function __construct($model)
     {
         $this->model = $model;
     }
@@ -101,7 +101,6 @@ abstract class Repository implements RepositoryInterface
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and')
     {
-
         list($value, $operator) = $this->prepareValueAndOperator(
             $value, $operator, func_num_args() == 2
         );
@@ -132,7 +131,6 @@ abstract class Repository implements RepositoryInterface
         $this->wheres[] = compact('type', 'column', 'values', 'boolean');
 
         return $this;
-
     }
 
     /**
@@ -213,12 +211,10 @@ abstract class Repository implements RepositoryInterface
         if ($result = $this->first([$column])) {
             return $result->{$column};
         }
-
-        return null;
     }
 
     /**
-     * Execute the query
+     * Execute the query.
      *
      * @param  array $columns
      * @return \Illuminate\Support\Collection
@@ -255,7 +251,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * Update database record with given attributes by ID
+     * Update database record with given attributes by ID.
      *
      * @param $attributes
      * @param $id
@@ -276,16 +272,15 @@ abstract class Repository implements RepositoryInterface
      */
     public function delete($id = null)
     {
-        if (!is_null($id)) {
+        if (! is_null($id)) {
             $this->where('id', $id);
         }
-
 
         return $this->prepareDeleteQuery()->delete();
     }
 
     /**
-     * Delete a single record from the database by ID
+     * Delete a single record from the database by ID.
      *
      * @param $id
      * @return mixed
@@ -296,21 +291,19 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * Prepare a executable query
+     * Prepare a executable query.
      *
      * @return mixed
      */
     protected function prepareQuery()
     {
-
         $query = $this->model->select($this->columns);
 
         $wheres = $this->wheres;
-        if (!is_null($wheres)) {
+        if (! is_null($wheres)) {
             foreach ($wheres as $where) {
                 if (isset($where['values']) && isset($where['type'])) {
                     $query->whereIn($where['column'], $where['values']);
-
                 } else {
                     $query->where($where['column'], $where['operator'], $where['value']);
                 }
@@ -318,7 +311,7 @@ abstract class Repository implements RepositoryInterface
         }
 
         $relations = $this->relations;
-        if (!is_null($this->relations)) {
+        if (! is_null($this->relations)) {
             foreach ($relations as $relation) {
                 $query->with($relation);
             }
@@ -328,7 +321,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * Prepare a executable delete query
+     * Prepare a executable delete query.
      *
      * @return mixed
      */
@@ -337,7 +330,7 @@ abstract class Repository implements RepositoryInterface
         $query = $this->model;
 
         $wheres = $this->wheres;
-        if (!is_null($wheres)) {
+        if (! is_null($wheres)) {
             foreach ($wheres as $where) {
                 $query->where($where['column'], $where['operator'], $where['value']);
             }
@@ -379,7 +372,7 @@ abstract class Repository implements RepositoryInterface
     protected function invalidOperatorAndValue($operator, $value)
     {
         return is_null($value) && in_array($operator, $this->operators) &&
-            !in_array($operator, ['=', '<>', '!=']);
+            ! in_array($operator, ['=', '<>', '!=']);
     }
 
     /**
@@ -390,6 +383,6 @@ abstract class Repository implements RepositoryInterface
      */
     protected function invalidOperator($operator)
     {
-        return !in_array(strtolower($operator), $this->operators, true);
+        return ! in_array(strtolower($operator), $this->operators, true);
     }
 }
