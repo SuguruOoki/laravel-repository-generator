@@ -3,7 +3,7 @@
 [![Packagist](https://img.shields.io/badge/packagist-v0.01-blue.svg)](https://packagist.org/packages/ozanakman/laravel-repository-generator) [![StyleCI](https://styleci.io/repos/90446716/shield?branch=master)](https://styleci.io/repos/90446716)
 
 ## About
-Repository Generator is a Laravel package that aims to generate repository and interfaces file for repository pattern. It gives you developing speed by automated operations. You can use this package for both ongoing and new projects.
+Repository Generator is a Laravel package that aims to generate repository and interface files for repository pattern. It gives you developing speed by automated operations. You can use this package for both ongoing and new projects.
 
 - Highly customizable with simple config
 - Overriding option
@@ -38,9 +38,7 @@ php artisan repositories:generate
 
 ### Repository file provided by this package (optional)
 
-This package contains Repository.php which has similar functions to Eloquent
-
-You can basically do something like below when you extend class from Repository.php
+This package contains Repository.php which has similar functions to Eloquent. You can basically do something like below when you extend class from Repository.php
 ``` php
 <?php
 
