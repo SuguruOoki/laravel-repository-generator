@@ -32,7 +32,7 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
      */
     protected function publishConfig()
     {
-        $configPath = __DIR__ . '/../config/repository-generator.php';
+        $configPath = __DIR__.'/../config/repository-generator.php';
 
         if (function_exists('config_path')) {
             $publishPath = config_path('repository-generator.php');
@@ -51,7 +51,7 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
      */
     protected function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/repository-generator.php', 'repository-generator');
+        $this->mergeConfigFrom(__DIR__.'/../config/repository-generator.php', 'repository-generator');
     }
 
     /**
