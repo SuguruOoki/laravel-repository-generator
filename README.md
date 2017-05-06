@@ -36,6 +36,20 @@ You can simply use `repositories:generate` command by terminal:
 php artisan repositories:generate
 ```
 
+### Repository file provided by this package (optional)
+
+This package contains Repository.php which has similar functions to Eloquent
+
+You can basically do something like below when you extend class from Repository.php
+``` php
+<?php
+
+$repository = app()->make(ExampleRepository::class);
+$magic = $repository->select('id', 'name')
+            ->where('name', 'The Flash')
+            ->get(); // or ->first();
+```
+
 ## Contributing
  
 Thank you for considering contributing to the Repository Generator! The contribution guide can be found in the CONTRIBUTING.md
