@@ -1,0 +1,31 @@
+{
+  "name": "ozanakman/laravel-repository-generator",
+  "description": "Quickly generating repository and interfaces from existing model files",
+  "keywords": ["laravel", "repository"],
+  "license": "MIT",
+  "homepage": "https://github.com/ozanakman/laravel-repository-generator",
+  "support": {
+    "issues": "https://github.com/ozanakman/laravel-repository-generator/issues",
+    "source": "https://github.com/ozanakman/laravel-repository-generator"
+  },
+  "authors": [
+    {
+      "name": "Ozan Akman",
+      "email": "info@ozanakman.com.tr"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.6.4",
+    "illuminate/support": "^5.4.*",
+    "illuminate/console": "^5.4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "OzanAkman\\RepositoryGenerator\\": "src"
+    },
+    "files": [
+      "Support/helper.php"
+    ]
+  }
+}
