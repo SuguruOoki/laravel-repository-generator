@@ -259,6 +259,7 @@ abstract class Repository implements RepositoryInterface
      */
     public function update($attributes, $id)
     {
+        $this->columns = null;
         $object = $this->where('id', $id)->first();
 
         return $object->update($attributes);

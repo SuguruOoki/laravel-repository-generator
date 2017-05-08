@@ -22,10 +22,8 @@
   },
   "autoload": {
     "psr-4": {
-      "OzanAkman\\RepositoryGenerator\\": "src"
+      "OzanAkman\\RepositoryGenerator\\": "src/"
     },
-    "files": [
-      "Support/helper.php"
-    ]
+    "files": ["src/Support/helper.php"]
   }
 }
