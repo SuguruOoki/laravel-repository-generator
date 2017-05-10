@@ -31,6 +31,7 @@ php artisan vendor:publish --provider="OzanAkman\RepositoryGenerator\RepositoryG
 Now you can edit `config/repository-generator.php`
 
 ## Usage
+Before using `generate` commdand you should customize `config/repository-generator.php` for your own use.
 You can simply use `repositories:generate` command by terminal:
 ``` bash
 php artisan repositories:generate
@@ -39,6 +40,9 @@ php artisan repositories:generate
 ### Repository file provided by RepositoryGenerator (optional use)
 
 This package contains Repository.php which has similar functions to Eloquent. You can basically do something like below when you extend class from `\OzanAkman\RepositoryGenerator\Repository`
+
+This is completely personal and optional. I just created/copied some functions from Eloquent to add similar functionalities directly to repository file. So I can you same methods in my controller If I extend this interface/repository for other database source like mongodb.
+
 ``` php
 <?php
 
