@@ -1,6 +1,6 @@
 # Laravel - Repository Generator
 
-[![Packagist](https://img.shields.io/badge/packagist-v0.01-blue.svg)](https://packagist.org/packages/ozanakman/laravel-repository-generator) [![StyleCI](https://styleci.io/repos/90446716/shield?branch=master)](https://styleci.io/repos/90446716)
+[![Packagist](https://img.shields.io/badge/packagist-v0.01-blue.svg)](https://packagist.org/packages/ozanakman/laravel-repository-generator) [![StyleCI](https://styleci.io/repos/90446716/shield?branch=master)](https://styleci.io/repos/90446716) [![Build Status](https://scrutinizer-ci.com/g/ozanakman/laravel-repository-generator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ozanakman/laravel-repository-generator/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ozanakman/laravel-repository-generator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ozanakman/laravel-repository-generator/?branch=master)
 
 ## About
 Repository Generator is a Laravel package that aims to generate repository and interface files for repository pattern. It gives you developing speed by automated operations. You can use this package for both ongoing and new projects.
